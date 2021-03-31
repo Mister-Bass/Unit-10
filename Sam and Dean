@@ -1,0 +1,108 @@
+//Jeroo Method
+method plantAndHop() 
+{
+   plant();
+   hop();
+   
+}
+// Solution 1 Main Method
+method main () 
+{
+   Jeroo sam = new Jeroo(0,0,EAST,90);
+   Jeroo dean = new Jeroo(0,23,WEST,90);
+   sam.plant();
+   dean.plant();
+   
+   while (!sam.isFacing(NORTH)) 
+   {
+      if (sam.isJeroo(AHEAD)) 
+      {
+         sam.turn(RIGHT);
+         dean.turn(LEFT);
+      }
+      
+      if (sam.isWater(AHEAD)) 
+      {
+         sam.turn(RIGHT);
+         dean.turn(LEFT);
+      }
+      
+      sam.plantAndHop();
+      dean.plantAndHop();
+      
+   }
+  dean.hop();
+  dean.hop();
+  sam.hop();
+  sam.hop();
+}
+
+// Solution 2 Main Method
+method main () 
+{
+   Jeroo sam = new Jeroo(0,0,EAST,90);
+   Jeroo dean = new Jeroo(0,23,WEST,90);
+   sam.plant();
+   dean.plant();
+   
+   while (!sam.isJeroo(AHEAD))
+  {
+    sam.plant();
+    sam.hop();
+    dean.plant();
+    dean.hop();
+  }
+  sam.turn(RIGHT);
+  dean.turn(LEFT);
+  
+  while (!sam.isWater(AHEAD))
+  {
+    sam.plant();
+    sam.hop();
+    dean.plant();
+    dean.hop();
+  }
+  
+  sam.turn(RIGHT);
+  dean.turn(LEFT);
+  
+  while (!sam.isWater(AHEAD))
+  {
+    sam.plant();
+    sam.hop();
+    dean.plant();
+    dean.hop();
+  }
+  
+  
+}
+// Solution 3 Main Method - 24 Lines
+method main () 
+{
+   Jeroo sam = new Jeroo(0,0,EAST,90);
+   Jeroo dean = new Jeroo(0,23,WEST,90);
+   sam.plant();
+   dean.plant();
+   
+   while (!sam.isWater(AHEAD) && !sam.isFacing(NORTH))
+  {
+    sam.plant();
+    sam.hop();
+    dean.plant();
+    dean.hop();
+    
+    if (sam.isJeroo(AHEAD))
+    {
+      sam.turn(RIGHT);
+      dean.turn(LEFT);
+    }
+    
+    if (sam.isWater(AHEAD))
+    {
+      sam.turn(RIGHT);
+      dean.turn(LEFT);
+    }
+    
+  }
+  
+}
